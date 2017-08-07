@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spring.dao.GoddessInfoMapper">
+
+    <!-- 新增-->
+    <insert id="insertGoddessInfo" >
+        INSERT INTO tbl_goddess_info(
+        NAME,PHONE,SCHOOL,MAJOR,INTRODUCTION,PRIMARY_PHOTO,SECONDARY_PHOTO
+        )VALUES(
+        #{name},#{phone},#{school},#{major},#{introduction},#{primaryPhoto},#{secondaryPhoto}
+        )
+    </insert>
+
+    <!-- 查询-->
+    <select id="getGoddessInfoList" resultType="GoddessInfo">
+        SELECT
+        tgi.NAME name,
+        tgi.PHONE phone,
+        tgi.SCHOOL school,
+        tgi.MAJOR major,
+        tgi.INTRODUCTION introduction,
+        tgi.PRIMARY_PHOTO primaryPhoto,
+        tgi.SECONDARY_PHOTO secondaryPhoto
+        FROM tbl_goddess_info tgi
+    </select>
+</mapper>
