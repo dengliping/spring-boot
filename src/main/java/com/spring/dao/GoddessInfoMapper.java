@@ -4,6 +4,8 @@ import com.spring.model.GoddessInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Created by dalp on 2017/8/7.
  */
@@ -13,5 +15,5 @@ public interface GoddessInfoMapper {
 
     int insertGoddessInfo(GoddessInfo goddessInfo);
 
-    GoddessInfo getGoddessInfoList();
+    List<GoddessInfo> getGoddessInfoList();
 }

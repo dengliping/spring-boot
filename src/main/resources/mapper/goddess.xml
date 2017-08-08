@@ -15,6 +15,9 @@
     <!-- 查询-->
     <select id="getGoddessInfoList" resultType="GoddessInfo">
         SELECT
+        tgi.ID id,
+        tgi.CREATE_TIME createTime,
+        tgi.MODIFY_TIME modifyTime,
         tgi.NAME name,
         tgi.PHONE phone,
         tgi.SCHOOL school,

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"/>
+    <!--&lt;!&ndash; 最新的 Bootstrap 核心 JavaScript 文件 &ndash;&gt;-->
+    <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"-->
+            <!--integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"-->
+            <!--crossorigin="anonymous"></script>-->
+    <title>新增</title>
+</head>
+<body>
+<div class="center-block" style="width:800px">
+
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>School</th>
+            <th>Major</th>
+            <th>Introduction</th>
+            <th>PrimaryPhoto</th>
+            <th></th>
+        </thead>
+        <form enctype="multipart/form-data">
+            <tbody>
+                <td><input name="name" type="text"></td>
+                <td><input name="phone" type="text"/></td>
+                <td><input name="school" type="text"/></td>
+                <td><input name="major" type="text"/></td>
+                <td><input name="introduction" type="text"/></td>
+                <td><input name="primaryPhoto" type="file"></td>
+                <td><input type="submit" value="上传"></td>
+            </tbody>
+        </form>
+    </table>
+
+</div>
+<a th:href="@{../goddess}">返回</a>
+</body>
+</html>
