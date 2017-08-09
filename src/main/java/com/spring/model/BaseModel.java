@@ -16,7 +16,4 @@ public class BaseModel {
 
     protected Timestamp modifyTime;
 
-
-
-
 }

@@ -27,4 +27,11 @@
         tgi.SECONDARY_PHOTO secondaryPhoto
         FROM tbl_goddess_info tgi
     </select>
+
+    <!-- 删除-->
+    <delete id="deleteGoddess">
+        DELETE
+        FROM tbl_goddess_info
+        WHERE ID = #{id}
+    </delete>
 </mapper>

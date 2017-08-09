@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-
-//@ComponentScan("com.spring.*")
 @MapperScan("com.spring.dao")
 public class Application {
 

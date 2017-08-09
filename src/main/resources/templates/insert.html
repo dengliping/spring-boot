@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>新增</title>
+</head>
+<body>
+<div class="center-block" style="width:800px">
+
+    <table width="500" border="1" cellpadding="0" cellspacing="0">
+        <thead>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>School</th>
+            <th>Major</th>
+            <th>Introduction</th>
+            <th>PrimaryPhoto</th>
+            <th></th>
+        </thead>
+        <form th:action="@{/add}" th:object="${goddessInfo}" enctype="multipart/form-data" method="post">
+            <tbody>
+                <td><input th:field="*{name}" name="name" type="text"/></td>
+                <td><input th:field="*{phone}" name="phone" type="text"/></td>
+                <td><input th:field="*{school}" name="school" type="text"/></td>
+                <td><input th:field="*{major}" name="major" type="text"/></td>
+                <td><input th:field="*{introduction}" name="introduction" type="text"/></td>
+                <td><input name="fileName" type="file"/></td>
+                <td><input type="submit" value="上传"/></td>
+            </tbody>
+        </form>
+    </table>
+
+</div>
+<a th:href="@{/goddess}">返回</a>
+</body>
+</html>
