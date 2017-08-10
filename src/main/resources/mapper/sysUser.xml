@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spring.dao.UserMapper">
+
+    <resultMap id="userMap" type="com.spring.model.SysUser">
+        <id property="id" column="id"/>
+        <result property="username" column="sys_username"/>
+        <result property="password" column="sys_password"/>
+        <collection property="roles" ofType="com.spring.model.SysRole">
+            <result property="name" column="sys_name"/>
+        </collection>
+    </resultMap>
+
+    <select id="findByUserName" resultMap="userMap">
+        SELECT
+        su.id,
+        su.sys_username,
+        su.sys_password,
+        sr.sys_name
+        FROM sys_user su
+        LEFT JOIN sys_role_user sru on su.id = sru.sys_user_id
+        LEFT JOIN sys_role sr on sru.sys_role_id = sr.id
+        WHERE su.sys_username = #{userName}
+    </select>
+</mapper>

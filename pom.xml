@@ -71,10 +71,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+		</dependency>
 	</dependencies>
 
 
-
+	<!-- spring-boot-maven-plugin插件就是打包spring boot应用的.
+	  要部署运行spring boot应用，首选要打包spring boot应用-->
 	<build>
 		<plugins>
 			<plugin>

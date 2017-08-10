@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spring.dao.PermissionMapper">
+
+    <select id="findAll" resultType="Permission">
+        SELECT
+        sp.id,
+        sp.sys_name name,
+        sp.description,
+        sp.url,
+        sp.pid
+        FROM sys_permission sp
+    </select>
+
+    <select id="findByAdminUserId" resultType="Permission">
+        SELECT
+        sp.id,
+        sp.sys_name name,
+        sp.description,
+        sp.url,
+        sp.pid
+        FROM sys_user su
+        LEFT JOIN sys_role_user sru on su.id= sru.sys_user_id
+        LEFT JOIN sys_role sr on sru.sys_role_id = sr.id
+        LEFT JOIN sys_permission_role spr on spr.role_id = sr.id
+        LEFT JOIN sys_permission sp on sp.id = spr.permission_id
+        WHERE su.id=#{userId}
+    </select>
+</mapper>

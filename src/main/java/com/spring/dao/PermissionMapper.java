@@ -2,6 +2,7 @@ package com.spring.dao;
 
 import com.spring.model.Permission;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,5 +14,5 @@ import java.util.List;
 @Component
 public interface PermissionMapper {
     List<Permission> findAll();
-    List<Permission> findByAdminUserId(int userId);
+    List<Permission> findByAdminUserId(@Param("userId") int userId);
 }

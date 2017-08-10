@@ -118,13 +118,23 @@ public class GoddessInfoController {
         return null;
     }
 
-    @RequestMapping("/")
-    public String index() {
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String index() {
+//        return "index";
+//    }
 
     @RequestMapping("/login")
     public String login() {
         return "login";
     }
+
+    @RequestMapping("/")
+    public String index(){
+        return "home";
+    }
+//    @RequestMapping("/goddess")
+//    @ResponseBody
+//    public String hello(){
+//        return "hello admin";
+//    }
 }
