@@ -42,8 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .withUser("a").password("a").roles("USER");
 //    }
 
-//    @Autowired
-//    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+    @Autowired
+    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 
 
     ////注册UserDetailsService 的bean
@@ -63,9 +63,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .anyRequest().authenticated() //任何请求,登录后可以访问
-//                    .antMatchers("/","/home").hasRole("LI")
-//                    .antMatchers("/", "/home")
-//                    .access("hasRole('PING') or hasRole('ADMIN') or hasRole('LI')")
+//                    .antMatchers("/goddess").hasAuthority("USER")
+//                    .antMatchers("/", "/home").access("hasAuthority('USER') or hasAuthority('ADMIN') or hasAuthority('LI')")
                     .and()
                 .formLogin()
                     .loginPage("/login")
@@ -73,6 +72,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .logout()
                     .permitAll(); //注销行为任意访问
-//        http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
+        http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
     }
 }

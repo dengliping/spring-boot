@@ -15,6 +15,7 @@ import java.util.*;
 
 /**
  * Created by dalp on 2017/8/10.
+ * MyInvocationSecurityMetadataSourceService：提取数据库中所有的用户权限，形成权限列表
  */
 @Service
 public class MyInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource {
@@ -25,6 +26,7 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
     private HashMap<String, Collection<ConfigAttribute>> map =null;
 
     /**
+     * loadResourceDefine()方法，形成以URL为key，权限列表为value的Map时，要注意key和value的对应性。
      * 加载权限表中所有权限
      */
     public void loadResourceDefine(){
@@ -34,7 +36,7 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
         List<Permission> permissions = permissionDao.findAll();
         for(Permission permission : permissions) {
             array = new ArrayList<>();
-            cfg = new SecurityConfig(permission.getName());
+            cfg = new SecurityConfig(permission.getName()); //权限名称
             //此处只添加了用户的名字，其实还可以添加更多权限的信息，
             // 例如请求方法到ConfigAttribute的集合中去。
             // 此处添加的信息将会作为MyAccessDecisionManager类的decide的第三个参数。
