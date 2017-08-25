@@ -3,14 +3,20 @@ package com.spring.controller;
 import com.spring.dto.PageResponse;
 import com.spring.model.GoddessInfo;
 import com.spring.service.GoddessInfoService;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.jeecgframework.poi.excel.ExcelExportUtil;
+import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by dalp on 2017/8/7.
@@ -128,6 +134,7 @@ public class GoddessInfoController {
         return "login";
     }
 
+
     @RequestMapping("/")
     public String index(){
         return "home";
@@ -136,5 +143,17 @@ public class GoddessInfoController {
 //    @ResponseBody
 //    public String hello(){
 //        return "hello admin";
+//    }
+
+//    // 下载execl文档
+//    @RequestMapping("/download")
+//    public void download(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        // 告诉浏览器用什么软件可以打开此文件
+//        response.setHeader("content-Type", "application/vnd.ms-excel");
+//        // 下载文件的默认名称
+//        response.setHeader("Content-Disposition", "attachment;filename=user.xls");
+//        List<GoddessInfo> list = (List<GoddessInfo>)  goddessInfoService.getGoddessInfoList().getContent();
+//        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(), GoddessInfo.class, list);
+//        workbook.write(response.getOutputStream());
 //    }
 }

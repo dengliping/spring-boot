@@ -1,8 +1,13 @@
 package com.spring.service;
 
 import com.spring.dao.PermissionMapper;
+import com.spring.dao.RoleMapper;
 import com.spring.dao.UserMapper;
+import com.spring.dto.ManaGlobal;
+import com.spring.dto.MessageResponse;
+import com.spring.dto.PageResponse;
 import com.spring.model.Permission;
+import com.spring.model.SysRole;
 import com.spring.model.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,9 +17,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dalp on 2017/8/10.
@@ -27,6 +34,8 @@ public class CustomUserService implements UserDetailsService {
     UserMapper userDao;
     @Autowired
     PermissionMapper permissionDao;
+    @Autowired
+    RoleMapper roleDao;
 
     @Override
     public UserDetails loadUserByUsername(String username){
@@ -35,13 +44,13 @@ public class CustomUserService implements UserDetailsService {
             List<Permission> permissions = permissionDao.findByAdminUserId(user.getId());
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
             for (Permission permission : permissions) {
-                if (permission != null && permission.getName()!= null) {
-                    GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permission.getName());
+                if (permission != null && permission.getPermissionName()!= null) {
+                    GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permission.getPermissionName());
                     //1：此处将权限信息添加到 GrantedAuthority 对象中，在后面进行全权限验证时会使用GrantedAuthority 对象。
                     grantedAuthorities.add(grantedAuthority);
                 }
             }
-            return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
+            return new User(user.getUserName(), user.getUserPsd(), grantedAuthorities);
         } else {
             throw new UsernameNotFoundException("admin: " + username + " do not exist!");
         }
@@ -60,4 +69,39 @@ public class CustomUserService implements UserDetailsService {
 //        return new org.springframework.security.core.userdetails.User(user.getUsername(),
 //                user.getPassword(), authorities);
     }
+
+    /**
+     * 新增用户
+     * @param sysUser
+     * @return
+     */
+    public MessageResponse<Object> insertSysUser(SysUser sysUser){
+        MessageResponse<Object> mr = new MessageResponse<>();
+        //新增用户信息到用户表
+        userDao.insertSysUser(sysUser);
+        //根据用户名获取新增后的id
+        SysUser newSysUser = userDao.findByUserName(sysUser.getUserName());
+        Long newId = newSysUser.getId();
+        //获取新增用户的角色
+        List<SysRole> roles = sysUser.getRoles();
+        //遍历新增用户角色关系
+        roles.forEach(item -> {
+            Map<String, Object> map = null;
+            map.put("userId", newId);
+            map.put("roleId", item.getId());
+            userDao.insertSysRoleUser(map);
+        });
+        mr.setStatus(ManaGlobal.SUCCESS);
+        return mr;
+    }
+
+//    /**
+//     * 获取用户列表
+//     * @return
+//     */
+//    public PageResponse<Object> getSysUser(){
+//        PageResponse<Object> pr = new PageResponse<>();
+//        pr.setContent(userDao.getSysUser());
+//        return pr;
+//    }
 }

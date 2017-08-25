@@ -63,8 +63,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .anyRequest().authenticated() //任何请求,登录后可以访问
-//                    .antMatchers("/goddess").hasAuthority("USER")
-//                    .antMatchers("/", "/home").access("hasAuthority('USER') or hasAuthority('ADMIN') or hasAuthority('LI')")
                     .and()
                 .formLogin()
                     .loginPage("/login")

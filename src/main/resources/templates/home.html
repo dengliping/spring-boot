@@ -25,7 +25,8 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/}"> 首页 </a></li>
-                <li><a th:href="@{/goddess}"> goddess </a></li>
+                <li><a th:href="@{/goddess}"> goddessMana </a></li>
+                <li><a th:href="@{/admin}">adminMana</a> </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -47,19 +48,14 @@
             <!--<p class="bg-info">用户类型为 ROLE_DENG 显示</p>-->
         <!--</div>-->
 
-        <!--<div sec:authorize="hasRole('ROLE_LI')"> &lt;!&ndash; 用户类型为 ROLE_USER 显示 &ndash;&gt;-->
-            <!--<p class="bg-info">用户类型为 ROLE_LI 显示</p>-->
-        <!--</div>-->
-
-        <!--<div sec:authorize="hasRole('ROLE_PING')"> &lt;!&ndash; 用户类型为 ROLE_USER 显示 &ndash;&gt;-->
-            <!--<p class="bg-info">用户类型为 ROLE_PING 显示</p>-->
-        <!--</div>-->
-
         <div sec:authorize="hasRole('ROLE_HOME')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
-            <p class="bg-info">你有ROLE_HOME权限</p>
+            <p class="bg-info">你有ROLE_HOME权限，可以访问首页</p>
         </div>
-        <div sec:authorize="hasRole('ROLE_ADMIN')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
-            <p class="bg-info">恭喜您,您有 ROLE_ADMIN 权限 </p>
+        <div sec:authorize="hasRole('ROLE_GODDESSMANA')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
+            <p class="bg-info">恭喜您,您有 ROLE_GODDESSMANA 权限 ，可以访问goddessMana</p>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMINMANA')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
+            <p class="bg-info">恭喜您,您有 ROLE_ADMINMANA 权限 ，可以访问adminMana</p>
         </div>
 
 

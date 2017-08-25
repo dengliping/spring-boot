@@ -43,9 +43,11 @@
     </div>
     <p th:text="${msg}"></p>
 </div>
-<a href="../page/insert.html" th:href="@{/insert}">新增</a>
+<li><a href="../page/insert.html" th:href="@{/insert}">新增</a></li>
+<li><a th:href="@{/download}">下载到Excel</a> </li>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="注销"/>
 </form>
+<li><a th:href="@{/}"> 首页 </a></li>
 </body>
 </html>

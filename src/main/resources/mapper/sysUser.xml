@@ -4,23 +4,46 @@
 <mapper namespace="com.spring.dao.UserMapper">
 
     <resultMap id="userMap" type="com.spring.model.SysUser">
-        <id property="id" column="id"/>
-        <result property="username" column="sys_username"/>
-        <result property="password" column="sys_password"/>
+        <id property="id" column="ID"/>
+        <result property="userName" column="SYS_USERNAME"/>
+        <result property="userPsd" column="SYS_PASSWORD"/>
         <collection property="roles" ofType="com.spring.model.SysRole">
-            <result property="name" column="sys_name"/>
+            <result property="roleName" column="SYS_NAME"/>
         </collection>
     </resultMap>
 
+    <!-- 根据用户名，获取其用户信息和角色list-->
     <select id="findByUserName" resultMap="userMap">
         SELECT
-        su.id,
-        su.sys_username,
-        su.sys_password,
-        sr.sys_name
+        su.ID,
+        su.CREATE_TIME,
+        su.MODIFY_TIME,
+        su.SYS_USERNAME,
+        su.SYS_PASSWORD,
+        sr.SYS_NAME
         FROM sys_user su
-        LEFT JOIN sys_role_user sru on su.id = sru.sys_user_id
-        LEFT JOIN sys_role sr on sru.sys_role_id = sr.id
-        WHERE su.sys_username = #{userName}
+        LEFT JOIN sys_role_user sru on su.ID = sru.SYS_USER_ID
+        LEFT JOIN sys_role sr on sru.SYS_ROLE_ID = sr.ID
+        WHERE su.SYS_USERNAME = #{userName}
     </select>
+
+    <!-- 新增用户信息-->
+    <insert id="insertSysUser" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO sys_user(
+        SYS_USERNAME,SYS_PASSWORD
+        )VALUES(
+        #{userName},#{userName}
+        )
+    </insert>
+
+    <!-- 新增用户角色关系-->
+    <insert id="insertSysRoleUser" parameterType="map">
+        INSERT INTO sys_role_user(
+        SYS_USER_ID,SYS_ROLE_ID
+        )VALUES(
+        #{userId},#{roleId}
+        )
+    </insert>
+
 </mapper>

@@ -14,5 +14,5 @@ import java.util.List;
 @Component
 public interface PermissionMapper {
     List<Permission> findAll();
-    List<Permission> findByAdminUserId(@Param("userId") int userId);
+    List<Permission> findByAdminUserId(@Param("userId") Long userId);
 }

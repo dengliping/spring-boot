@@ -10,10 +10,10 @@ import java.sql.Timestamp;
 @Data
 public class BaseModel {
 
-    protected  long id;
+    protected Long id;
 
-    protected Timestamp createTime;
+    protected Timestamp createTime; //创建时间
 
-    protected Timestamp modifyTime;
+    protected Timestamp modifyTime; //修改时间
 
 }

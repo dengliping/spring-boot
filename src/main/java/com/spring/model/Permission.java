@@ -7,17 +7,13 @@ import lombok.Data;
  * 权限
  */
 @Data
-public class Permission {
-    private Integer id;
-    //权限名称
-    private String name;
+public class Permission extends BaseModel{
 
-    //权限描述
-    private String description;
+    private String permissionName; //权限名称
 
-    //授权链接
-    private String url;
+    private String description; //权限描述
 
-    //父节点id
-    private Integer pid;
+    private String url; //授权链接
+
+    private Integer pid; //父节点id
 }

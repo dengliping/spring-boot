@@ -36,7 +36,7 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
         List<Permission> permissions = permissionDao.findAll();
         for(Permission permission : permissions) {
             array = new ArrayList<>();
-            cfg = new SecurityConfig(permission.getName()); //权限名称
+            cfg = new SecurityConfig(permission.getPermissionName()); //权限名称
             //此处只添加了用户的名字，其实还可以添加更多权限的信息，
             // 例如请求方法到ConfigAttribute的集合中去。
             // 此处添加的信息将会作为MyAccessDecisionManager类的decide的第三个参数。

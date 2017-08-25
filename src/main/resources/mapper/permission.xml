@@ -5,26 +5,26 @@
 
     <select id="findAll" resultType="Permission">
         SELECT
-        sp.id,
-        sp.sys_name name,
-        sp.description,
-        sp.url,
-        sp.pid
+        sp.ID id,
+        sp.PERMISSION_NAME permissionName,
+        sp.DESCRIBTION describtion,
+        sp.URL url,
+        sp.PID pid
         FROM sys_permission sp
     </select>
 
     <select id="findByAdminUserId" resultType="Permission">
         SELECT
-        sp.id,
-        sp.sys_name name,
-        sp.description,
-        sp.url,
-        sp.pid
+        sp.ID id,
+        sp.PERMISSION_NAME permissionName,
+        sp.DESCRIBTION description,
+        sp.URL url,
+        sp.PID pid
         FROM sys_user su
-        LEFT JOIN sys_role_user sru on su.id= sru.sys_user_id
-        LEFT JOIN sys_role sr on sru.sys_role_id = sr.id
-        LEFT JOIN sys_permission_role spr on spr.role_id = sr.id
-        LEFT JOIN sys_permission sp on sp.id = spr.permission_id
-        WHERE su.id=#{userId}
+        LEFT JOIN sys_role_user sru on su.ID = sru.SYS_USER_ID
+        LEFT JOIN sys_role sr on sru.SYS_ROLE_ID = sr.ID
+        LEFT JOIN sys_permission_role spr on spr.ROLE_ID = sr.ID
+        LEFT JOIN sys_permission sp on sp.ID = spr.PERMISSION_ID
+        WHERE su.ID=#{userId}
     </select>
 </mapper>
