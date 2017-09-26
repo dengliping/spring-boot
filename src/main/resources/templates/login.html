@@ -1,20 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta content="text/html;charset=UTF-8"/>
-    <title>登录页面</title>
-    <!--<link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>-->
-    <style type="text/css">
-        body {
-            padding-top: 50px;
-        }
-        .starter-template {
-            padding: 40px 15px;
-            text-align: center;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpringBoot项目登录页面</title>
+    <link th:href="@{/css/backstage/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+    <link th:href="@{/css/backstage/plugins/toastr/toastr.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/backstage/animate.css}" rel="stylesheet" />
+    <link th:href="@{/css/backstage/style.css}" rel="stylesheet" />
 </head>
-<body>
+
+<body class="gray-bg">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -25,27 +22,51 @@
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/}"> 首页 </a></li>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
-<div class="container">
 
-    <div class="starter-template">
-        <p th:if="${param.logout}" class="bg-warning">已成功注销</p><!-- 1 -->
-        <p th:if="${param.error}" class="bg-danger">有错误，请重试</p> <!-- 2 -->
-        <h2>使用账号密码登录</h2>
-        <form name="form" th:action="@{/login}" action="/login" method="POST"> <!-- 3 -->
-            <div class="form-group">
-                <label for="userName" >账号</label>
-                <input id="userName" type="text" class="form-control" name="username" value="" placeholder="账号" />
+    <div id="login-block" class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+                <h1 class="logo-name">SpringBoot</h1>
             </div>
-            <div class="form-group">
-                <label for="userPsd">密码</label>
-                <input id="userPsd" type="password" class="form-control" name="password" placeholder="密码" />
-            </div>
-            <input type="submit" id="login" value="Login" class="btn btn-primary" />
-        </form>
+            <h3>欢迎使用SpringBoot项目</h3>
+            <p>Login in. To see it in action.</p>
+            <form name="form" th:action="@{/login}" action="/login" method="POST"> <!-- 3 -->
+                <div class="form-group">
+                    <input id="userName" type="text" class="form-control" name="username" value="" placeholder="账号" />
+                </div>
+                <div class="form-group">
+                    <input id="userPsd" type="password" class="form-control" name="password" placeholder="密码" />
+                </div>
+                <input type="submit" id="login" value="Login" class="btn btn-primary" />
+            </form>
+            <p th:if="${param.logout}" class="m-t"><small>已成功注销</small></p>
+            <p th:if="${param.error}" class="bg-danger"><small>有错误，请重试</small></p>
+        </div>
     </div>
-</div>
+
+    <script th:inline="javascript">
+        var baseUrl = [[${#httpServletRequest.getContextPath()}]];
+    </script>
+
+    <!-- Mainly scripts -->
+    <script th:src="@{/js/backstage/main/jquery-2.1.1.js}"></script>
+    <script th:src="@{/js/backstage/main/bootstrap.min.js}"></script>
+    <script th:src="@{/js/backstage/main/vue.js}"></script>
+
+    <!-- plugins -->
+    <script th:src="@{/js/backstage/plugins/toastr/toastr.min.js}"></script>
+    <script th:src="@{/js/backstage/plugins/validate/jquery.validate.min.js}"></script>
+
+    <!-- Custom javascript -->
+    <!--<script th:src="@{/js/jquery.md5.js}"></script>-->
+    <script th:src="@{/js/backstage/md5.js}"></script>
+    <script th:src="@{/js/backstage/common.js}"></script>
+    <script th:src="@{/js/backstage/web.js}"></script>
+    <script th:src="@{/js/backstage/server.js}"></script>
+    <script th:src="@{/js/backstage/login.js}"></script>
+
 </body>
 </html>

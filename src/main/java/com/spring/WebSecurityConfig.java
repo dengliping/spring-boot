@@ -62,6 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                    .antMatchers("/login","/css/**","/font-awesome/**","/js/**").permitAll() //给出了不被拦截的一些静态资源的路径 **表示可以跨文件夹
                     .anyRequest().authenticated() //任何请求,登录后可以访问
                     .and()
                 .formLogin()

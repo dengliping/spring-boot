@@ -1,0 +1,62 @@
+.flowBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 60px;
+  position: fixed;
+  top: 60%;
+  left: calc((100% - 1150px)/4);
+}
+.container .splitLine {
+  width: 100%;
+  height: 5px;
+  background: #eee;
+}
+.container .bannerContainer {
+  width: 100%;
+}
+.container .bannerContainer img {
+  width: 100%;
+  height: 100%;
+}
+.container .contentContainer {
+  width: 1150px;
+  margin-left: calc((100% - 1150px)/2);
+}
+.container .contentContainer .content {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.container .contentContainer .content .point {
+  background: #ffc727;
+}
+.container .contentContainer .content .title {
+  font-size: 16px;
+  font-weight: bold;
+}
+.container .contentContainer .content .des {
+  border: 1px solid #eee;
+  -webkit-box-shadow: 5px 5px 5px 0 lightgray;
+          box-shadow: 5px 5px 5px 0 lightgray;
+  padding: 5px;
+  margin-top: 5px;
+}
+.container .contentContainer .vContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.container .contentContainer .vContent .title {
+  width: 20px;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+}

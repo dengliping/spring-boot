@@ -4,8 +4,8 @@ import com.spring.dto.PageResponse;
 import com.spring.model.GoddessInfo;
 import com.spring.service.GoddessInfoService;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.jeecgframework.poi.excel.ExcelExportUtil;
-import org.jeecgframework.poi.excel.entity.ExportParams;
+//import org.jeecgframework.poi.excel.ExcelExportUtil;
+//import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -124,11 +124,6 @@ public class GoddessInfoController {
         return null;
     }
 
-//    @RequestMapping("/")
-//    public String index() {
-//        return "index";
-//    }
-
     @RequestMapping("/login")
     public String login() {
         return "login";
@@ -139,6 +134,7 @@ public class GoddessInfoController {
     public String index(){
         return "home";
     }
+
 //    @RequestMapping("/goddess")
 //    @ResponseBody
 //    public String hello(){
@@ -156,4 +152,5 @@ public class GoddessInfoController {
 //        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams(), GoddessInfo.class, list);
 //        workbook.write(response.getOutputStream());
 //    }
+
 }

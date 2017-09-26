@@ -33,7 +33,7 @@
             <div class="col-md-1"><span th:text="${content.major}"></span></div>
             <div class="col-md-2"><span th:text="${content.introduction}"></span> </div>
             <div class="col-md-2">
-                <span><a th:href="@{/download(fileName=${content.primaryPhoto})}" th:text="${content.primaryPhoto}"></a></span>
+                <span th:href="@{/download(fileName=${content.primaryPhoto})}" th:text="${content.primaryPhoto}"></span>
             </div>
             <!--<div class="col-md-2"><span th:text="${content.primaryPhoto}"></span> </div>-->
             <div class="col-md-2">
