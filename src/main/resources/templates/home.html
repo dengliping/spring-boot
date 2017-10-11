@@ -7,48 +7,140 @@
     <title sec:authentication="name"></title>
     <link th:href="@{/css/backstage/bootstrap.min.css}" rel="stylesheet" />
     <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+    <link th:href="@{/css/backstage/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}" rel="stylesheet" />
     <link th:href="@{/css/backstage/plugins/toastr/toastr.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/backstage/plugins/sweetalert/sweetalert.css}" rel="stylesheet" />
     <link th:href="@{/css/backstage/animate.css}" rel="stylesheet" />
     <link th:href="@{/css/backstage/style.css}" rel="stylesheet" />
+    <link th:href="@{/css/backstage/index.css}" rel="stylesheet" />
+    <!--pc-->
+    <link rel="stylesheet" href="../static/css/pc/businessParter.css" th:href="@{/css/pc/backPreview/businessParter.css}" />
 </head>
 
-<body class="gray-bg">
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Spring Security演示</a>
+<body>
+    <div id="wrapper">
+        <script th:inline="javascript">
+            var baseUrl = [[${#httpServletRequest.getContextPath()}]];
+            /*var sessionUser = [[${session.user}]];*/
+        </script>
+
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+
+                    <!-- 菜单用户 -->
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs"> <strong class="font-bold">欢迎</strong></span>
+                                    <span class="text-muted text-xs block">Spring Security演示<b class="caret"></b></span>
+                                    <!--<span class="text-muted text-xs block">后台管理<b class="caret"></b></span>-->
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <form th:action="@{/logout}" method="post">
+                                    <input type="submit" value="注销"/>
+                                </form>
+                                <!--<li><a v-on:click="logout">注销</a></li>-->
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            dalp
+                        </div>
+                    </li>
+
+                    <!-- 菜单 -->
+                    <li><a th:href="@{/}"><span class="nav-label">首页</span></a></li>
+                    <li><a th:href="@{/goddess}"><span class="nav-label">goddessMana</span></a></li>
+                    <li><a th:href="@{/admin}"><span class="nav-label">adminMana</span></a></li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <!-- 导航条 -->
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary"><i class="fa fa-bars"></i> </a>
+                        <!--<form role="search" class="navbar-form-custom" method="post" action="#">-->
+                        <!--<div class="form-group">-->
+                        <!--<input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search" />-->
+                        <!--</div>-->
+                        <!--</form>-->
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <form th:action="@{/logout}" method="post">
+                                <input type="submit" class="fa fa-sign-out" value="注销"/>
+                            </form>
+                        </li>
+                        <!--<li>-->
+                            <!--<a v-on:click="logout">-->
+                                <!--<i class="fa fa-sign-out"></i> 注销-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- 内容 -->
+            <!--<router-view>-->
+                <div class="middle-box text-center loginscreen animated fadeInDown">
+                    <div class="m-t" sec:authorize="hasRole('ROLE_HOME')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
+                        <p class="bg-info">你有ROLE_HOME权限，可以访问 首页 </p>
+                    </div>
+                    <div class="m-t" sec:authorize="hasRole('ROLE_GODDESSMANA')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
+                        <p class="bg-info">您有 ROLE_GODDESSMANA 权限 ，可以访问 goddessMana </p>
+                    </div>
+                    <div class="m-t" sec:authorize="hasRole('ROLE_ADMINMANA')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
+                        <p class="bg-info">您有 ROLE_ADMINMANA 权限 ，可以访问 adminMana </p>
+                    </div>
+                </div>
+            <!--</router-view>-->
+
+
+            <!-- 尾部 -->
+            <div class="footer">
+                <!--<div class="pull-right">-->
+                <!--&lt;!&ndash;10GB of <strong>250GB</strong>&ndash;&gt; Free Forever.-->
+                <!--</div>-->
+                <div>
+                    <strong>spring boot</strong>
+                </div>
+            </div>
+
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a th:href="@{/}"> 首页 </a></li>
-                <li><a th:href="@{/goddess}"> goddessMana </a></li>
-                <li><a th:href="@{/admin}">adminMana</a> </li>
-            </ul>
-        </div><!--/.nav-collapse -->
     </div>
+    <script src="https://unpkg.com/wangeditor@3.0.9/release/wangEditor.min.js"></script>
+    <!-- Mainly scripts -->
+    <script th:src="@{/js/backstage/main/jquery-2.1.1.js}"></script>
+    <script th:src="@{/js/backstage/main/bootstrap.min.js}"></script>
+    <script th:src="@{/js/backstage/plugins/metisMenu/jquery.metisMenu.js}"></script>
+    <script th:src="@{/js/backstage/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+    <script th:src="@{/js/backstage/main/vue.js}"></script>
+    <script th:src="@{/js/backstage/main/vue-router.js}"></script>
+    <script th:src="@{/js/backstage/main/inspinia.js}"></script>
 
-</nav>
+    <!-- plugins -->
+    <script th:src="@{/js/backstage/plugins/pace/pace.min.js}"></script>
+    <script th:src="@{/js/backstage/plugins/jquery-ui/jquery-ui.min.js}"></script>
+    <script th:src="@{/js/backstage/plugins/toastr/toastr.min.js}"></script>
+    <script th:src="@{/js/backstage/plugins/sweetalert/sweetalert.min.js}"></script>
+    <script th:src="@{/js/backstage/plugins/validate/jquery.validate.min.js}"></script>
 
-<div class="middle-box text-center loginscreen animated fadeInDown">
-    <div class="m-t" sec:authorize="hasRole('ROLE_HOME')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
-        <p class="bg-info">你有ROLE_HOME权限，可以访问 首页 </p>
-    </div>
-
-    <div class="m-t" sec:authorize="hasRole('ROLE_GODDESSMANA')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
-        <p class="bg-info">您有 ROLE_GODDESSMANA 权限 ，可以访问 goddessMana </p>
-    </div>
-
-    <div class="m-t" sec:authorize="hasRole('ROLE_ADMINMANA')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
-        <p class="bg-info">您有 ROLE_ADMINMANA 权限 ，可以访问 adminMana </p>
-    </div>
-
-    <div class="m-t">
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" class="btn btn-primary" value="注销"/>
-        </form>
-    </div>
-
-</div>
+    <!-- Custom javascript -->
+    <script th:src="@{/js/backstage/md5.js}"></script>
+    <script th:src="@{/js/backstage/common.js}"></script>
+    <script th:src="@{/js/backstage/web.js}"></script>
+    <script th:src="@{/js/backstage/server.js}"></script>
+    <script th:src="@{/js/backstage/menu.js}"></script>
+    <script th:src="@{/js/backstage/component.js}"></script>
+    <script th:src="@{/js/backstage/router.js}"></script>
+    <script th:src="@{/js/backstage/map.js}"></script>
+    <script th:src="@{/js/backstage/index.js}"></script>
 
 </body>
 </html>
